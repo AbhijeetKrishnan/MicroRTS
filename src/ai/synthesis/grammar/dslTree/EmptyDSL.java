@@ -97,7 +97,7 @@ public class EmptyDSL extends AbstractNodeDSLTree implements iEmptyDSL, iS4Const
     }
 
     @Override
-    public String formmated_translation() {
+    public String formatted_translation() {
         return "";
     }
 

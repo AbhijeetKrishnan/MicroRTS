@@ -103,7 +103,7 @@ public class CommandDSL extends AbstractNodeDSLTree implements iCommandDSL {
     }
 
     @Override
-    public String formmated_translation() {
+    public String formatted_translation() {
         return grammarDSF+"\n";
     }
     

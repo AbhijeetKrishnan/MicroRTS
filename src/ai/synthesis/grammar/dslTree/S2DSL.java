@@ -176,12 +176,12 @@ public class S2DSL extends AbstractNodeDSLTree implements iDSL, iS4ConstraintDSL
     }
 
     @Override
-    public String formmated_translation() {
+    public String formatted_translation() {
         String ifCode;
-        ifCode = "if(" + this.boolCommand.formmated_translation() + ")\n";
-        ifCode += " begin-then{\n \t" + this.thenCommand.formmated_translation() + "\n\t}end-then\n";
+        ifCode = "if(" + this.boolCommand.formatted_translation() + ")\n";
+        ifCode += " begin-then{\n \t" + this.thenCommand.formatted_translation() + "\n\t}end-then\n";
         if (this.elseCommand != null) {
-            ifCode += " begin-else{\n \t" + this.elseCommand.formmated_translation() + "\n\t}end-else";
+            ifCode += " begin-else{\n \t" + this.elseCommand.formatted_translation() + "\n\t}end-else";
         }
         return ifCode.replace("begin-else{}end-else", "").trim();
     }

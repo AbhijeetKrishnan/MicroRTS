@@ -4,22 +4,19 @@
  */
 package synthesizer.FicPlaySynthesizer.synthesis.runners.roundRobinLocal;
 
-import ai.core.AI;
-import ai.evaluation.SimpleSqrtEvaluationFunction3;
-import ai.synthesis.dslForScriptGenerator.DSLCommandInterfaces.ICommand;
-import ai.synthesis.dslForScriptGenerator.DSLCompiler.IDSLCompiler;
-import ai.synthesis.dslForScriptGenerator.DSLCompiler.MainDSLCompiler;
-import ai.synthesis.dslForScriptGenerator.DslAI;
-import ai.synthesis.grammar.dslTree.interfacesDSL.iDSL;
-import gui.PhysicalGameStatePanel;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
+
+import ai.core.AI;
+import ai.synthesis.dslForScriptGenerator.DslAI;
+import ai.synthesis.dslForScriptGenerator.DSLCommandInterfaces.ICommand;
+import ai.synthesis.dslForScriptGenerator.DSLCompiler.IDSLCompiler;
+import ai.synthesis.dslForScriptGenerator.DSLCompiler.MainDSLCompiler;
+import ai.synthesis.grammar.dslTree.interfacesDSL.iDSL;
 import rts.GameState;
 import rts.PhysicalGameState;
 import rts.PlayerAction;

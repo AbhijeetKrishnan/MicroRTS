@@ -140,13 +140,13 @@ public class S5DSL extends AbstractNodeDSLTree implements iS5ConstraintDSL{
     }
 
     @Override
-    public String formmated_translation() {
+    public String formatted_translation() {
         if(this.NotFactor == NotFactor.NONE){
-            return boolCommand.formmated_translation().trim();
+            return boolCommand.formatted_translation().trim();
         }else if (this.NotFactor == NotFactor.NOT) {
             return "not "+boolCommand.translate().trim();
         }
-        return boolCommand.formmated_translation().trim();
+        return boolCommand.formatted_translation().trim();
     }
 
     

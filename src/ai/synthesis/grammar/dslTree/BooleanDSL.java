@@ -103,7 +103,7 @@ public class BooleanDSL extends AbstractNodeDSLTree implements iBooleanDSL{
     }
 
     @Override
-    public String formmated_translation() {
+    public String formatted_translation() {
         return booleanCommand;
     }
     

@@ -107,8 +107,8 @@ public class S3DSL extends AbstractNodeDSLTree implements iDSL, iS1ConstraintDSL
     }
 
     @Override
-    public String formmated_translation() {
-        return "for(u) {\n\t" + forCommand.formmated_translation()+ "\n\t}\n";
+    public String formatted_translation() {
+        return "for(u) {\n\t" + forCommand.formatted_translation()+ "\n\t}\n";
     }
 
 }

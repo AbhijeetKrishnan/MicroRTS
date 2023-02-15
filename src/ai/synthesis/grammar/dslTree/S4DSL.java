@@ -139,11 +139,11 @@ public class S4DSL extends AbstractNodeDSLTree implements iDSL{
     }
 
     @Override
-    public String formmated_translation() {
+    public String formatted_translation() {
         if(nextCommand == null){
-            return firstDSL.formmated_translation();
+            return firstDSL.formatted_translation();
         }
-        return (firstDSL.formmated_translation()+"\n"+nextCommand.formmated_translation()).trim();
+        return (firstDSL.formatted_translation()+"\n"+nextCommand.formatted_translation()).trim();
     }
     
 }
