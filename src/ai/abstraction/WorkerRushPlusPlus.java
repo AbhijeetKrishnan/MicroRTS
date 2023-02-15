@@ -4,17 +4,15 @@
  */
 package ai.abstraction;
 
-import ai.abstraction.AbstractAction;
-import ai.abstraction.AbstractionLayerAI;
-import ai.abstraction.Harvest;
-import ai.abstraction.pathfinding.AStarPathFinding;
-import ai.abstraction.pathfinding.PathFinding;
-import ai.core.AI;
-import ai.core.ParameterSpecification;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+
+import ai.abstraction.pathfinding.AStarPathFinding;
+import ai.abstraction.pathfinding.PathFinding;
+import ai.core.AI;
+import ai.core.ParameterSpecification;
 import rts.GameState;
 import rts.PhysicalGameState;
 import rts.Player;

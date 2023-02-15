@@ -4,6 +4,14 @@
  */
 package ai.synthesis.dslForScriptGenerator.DSLCommand;
 
+import java.math.BigDecimal;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
 import ai.core.AI;
 import ai.evaluation.EvaluationFunction;
 import ai.evaluation.SimpleSqrtEvaluationFunction3;
@@ -14,27 +22,6 @@ import ai.synthesis.dslForScriptGenerator.DSLCompiler.IDSLCompiler;
 import ai.synthesis.dslForScriptGenerator.DSLCompiler.MainDSLCompiler;
 import ai.synthesis.grammar.dslTree.interfacesDSL.iDSL;
 import ai.synthesis.grammar.dslTree.utils.ReduceDSLController;
-import gui.PhysicalGameStatePanel;
-import java.awt.event.WindowEvent;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.math.BigDecimal;
-import java.time.Duration;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import javax.swing.JFrame;
-
 import rts.GameState;
 import rts.PhysicalGameState;
 import rts.PlayerAction;

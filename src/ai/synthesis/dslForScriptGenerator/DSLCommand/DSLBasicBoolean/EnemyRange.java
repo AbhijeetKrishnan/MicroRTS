@@ -5,14 +5,14 @@
  */
 package ai.synthesis.dslForScriptGenerator.DSLCommand.DSLBasicBoolean;
 
-import ai.synthesis.dslForScriptGenerator.IDSLParameters.IParameters;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import ai.abstraction.pathfinding.PathFinding;
 import ai.synthesis.dslForScriptGenerator.DSLCommand.AbstractBooleanAction;
 import ai.synthesis.dslForScriptGenerator.DSLCommandInterfaces.ICommand;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+import ai.synthesis.dslForScriptGenerator.IDSLParameters.IParameters;
 import rts.GameState;
 import rts.PhysicalGameState;
 import rts.PlayerAction;

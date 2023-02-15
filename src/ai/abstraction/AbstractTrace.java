@@ -4,12 +4,13 @@
  */
 package ai.abstraction;
 
-import ai.abstraction.AbstractAction;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+
 import org.jdom.Element;
+
 import rts.units.Unit;
 import rts.units.UnitTypeTable;
 import util.XMLWriter;

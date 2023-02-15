@@ -5,33 +5,32 @@
  */
 package ai.synthesis.dslForScriptGenerator.DSLCommand.DSLBasicAction;
 
-import ai.synthesis.dslForScriptGenerator.DSLCommand.DSLEnumerators.EnumPositionType;
-import ai.synthesis.dslForScriptGenerator.DSLCommand.DSLEnumerators.EnumTypeUnits;
-import ai.synthesis.dslForScriptGenerator.IDSLParameters.IParameters;
-import ai.synthesis.dslForScriptGenerator.IDSLParameters.IPriorityPosition;
-import ai.synthesis.dslForScriptGenerator.IDSLParameters.IQuantity;
-import ai.synthesis.dslForScriptGenerator.DSLParametersConcrete.ConstructionTypeParam;
-import ai.synthesis.dslForScriptGenerator.DSLParametersConcrete.PriorityPositionParam;
-import ai.abstraction.AbstractAction;
-import ai.abstraction.Build;
-import ai.abstraction.pathfinding.PathFinding;
-import ai.synthesis.dslForScriptGenerator.DSLCommand.AbstractBasicAction;
-import ai.synthesis.dslForScriptGenerator.DSLCommandInterfaces.IUnitCommand;
+import static rts.UnitAction.DIRECTION_DOWN;
+import static rts.UnitAction.DIRECTION_LEFT;
+import static rts.UnitAction.DIRECTION_RIGHT;
+import static rts.UnitAction.DIRECTION_UP;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+
+import ai.abstraction.pathfinding.PathFinding;
+import ai.synthesis.dslForScriptGenerator.DSLCommand.AbstractBasicAction;
+import ai.synthesis.dslForScriptGenerator.DSLCommand.DSLEnumerators.EnumPositionType;
+import ai.synthesis.dslForScriptGenerator.DSLCommand.DSLEnumerators.EnumTypeUnits;
+import ai.synthesis.dslForScriptGenerator.DSLCommandInterfaces.IUnitCommand;
+import ai.synthesis.dslForScriptGenerator.DSLParametersConcrete.ConstructionTypeParam;
+import ai.synthesis.dslForScriptGenerator.DSLParametersConcrete.PriorityPositionParam;
+import ai.synthesis.dslForScriptGenerator.IDSLParameters.IParameters;
+import ai.synthesis.dslForScriptGenerator.IDSLParameters.IPriorityPosition;
+import ai.synthesis.dslForScriptGenerator.IDSLParameters.IQuantity;
 import rts.GameState;
 import rts.PhysicalGameState;
 import rts.Player;
 import rts.PlayerAction;
-import rts.ResourceUsage;
 import rts.UnitAction;
-import static rts.UnitAction.DIRECTION_DOWN;
-import static rts.UnitAction.DIRECTION_LEFT;
-import static rts.UnitAction.DIRECTION_RIGHT;
-import static rts.UnitAction.DIRECTION_UP;
 import rts.units.Unit;
 import rts.units.UnitType;
 import rts.units.UnitTypeTable;

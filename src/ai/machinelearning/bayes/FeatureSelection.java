@@ -5,13 +5,12 @@
  */
 package ai.machinelearning.bayes;
 
-import ai.machinelearning.bayes.TrainingInstance;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+
 import rts.UnitAction;
 import rts.units.Unit;
 import rts.units.UnitTypeTable;
