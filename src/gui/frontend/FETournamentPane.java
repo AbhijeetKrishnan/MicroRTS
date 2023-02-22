@@ -48,6 +48,11 @@ public class FETournamentPane extends JPanel {
     private static final String TOURNAMENT_FIXED_OPPONENTS = "Fixed Opponents";
     
     private JComboBox tournamentTypeComboBox;
+
+    private DefaultListModel availableSynsListModel;
+    private JList availableSynsList;
+    private DefaultListModel selectedSynsListModel;
+    private JList selectedSynsList;
     
     private DefaultListModel availableAIsListModel;
     private JList availableAIsList;
@@ -108,11 +113,17 @@ public class FETournamentPane extends JPanel {
         {
             JPanel p1 = new JPanel();
             p1.setLayout(new BoxLayout(p1, BoxLayout.X_AXIS));
+
+            JPanel availableAIsPanel;
+            JPanel availableSynsPanel;
+            JPanel selectedAIsPanel;
+            JPanel selectedSynsPanel;
+            JPanel opponentAIsPanel;
             
             {
-                JPanel p1left = new JPanel();
-                p1left.setLayout(new BoxLayout(p1left, BoxLayout.Y_AXIS));
-                p1left.add(new JLabel("Available AIs"));
+                availableAIsPanel = new JPanel();
+                availableAIsPanel.setLayout(new BoxLayout(availableAIsPanel, BoxLayout.Y_AXIS));
+                availableAIsPanel.add(new JLabel("Available AIs"));
 
                 availableAIsListModel = new DefaultListModel();
 
@@ -125,7 +136,7 @@ public class FETournamentPane extends JPanel {
                 availableAIsList.setVisibleRowCount(-1);
                 JScrollPane listScroller = new JScrollPane(availableAIsList);
                 listScroller.setPreferredSize(new Dimension(200, 200));
-                p1left.add(listScroller);
+                availableAIsPanel.add(listScroller);
                 
                 JButton loadJAR = new JButton("Load Specific JAR");
                 loadJAR.addActionListener(new ActionListener() {
@@ -154,7 +165,7 @@ public class FETournamentPane extends JPanel {
                        }
                     }
                 });
-                p1left.add(loadJAR);
+                availableAIsPanel.add(loadJAR);
                 
                 JButton loadJARFolder = new JButton("Load All JARS from Folder");
                 loadJARFolder.addActionListener(new ActionListener() {
@@ -183,14 +194,31 @@ public class FETournamentPane extends JPanel {
                        }
                     }
                 });
-                p1left.add(loadJARFolder);
-
-                p1.add(p1left);
+                availableAIsPanel.add(loadJARFolder);
             }
             {
-                JPanel p1center = new JPanel();
-                p1center.setLayout(new BoxLayout(p1center, BoxLayout.Y_AXIS));
-                p1center.add(new JLabel("Selected AIs"));
+                availableSynsPanel = new JPanel();
+                availableSynsPanel.setLayout(new BoxLayout(availableSynsPanel, BoxLayout.Y_AXIS));
+                availableSynsPanel.add(new JLabel("Available Synthesizers"));
+
+                availableSynsListModel = new DefaultListModel();
+
+                for(int i = 0; i < FEStatePane.Synthesizers.length; i++) {
+                    availableSynsListModel.addElement(FEStatePane.Synthesizers[i]);
+                }                
+                availableSynsList = new JList(availableSynsListModel);
+                availableSynsList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+                availableSynsList.setLayoutOrientation(JList.VERTICAL);
+                availableSynsList.setVisibleRowCount(-1);
+                JScrollPane listScroller = new JScrollPane(availableSynsList);
+                listScroller.setPreferredSize(new Dimension(200, 200));
+                availableSynsPanel.add(listScroller);
+                p1.add(availableSynsPanel);
+            }
+            {
+                selectedAIsPanel = new JPanel();
+                selectedAIsPanel.setLayout(new BoxLayout(selectedAIsPanel, BoxLayout.Y_AXIS));
+                selectedAIsPanel.add(new JLabel("Selected AIs"));
 
                 selectedAIsListModel = new DefaultListModel();
                 selectedAIsList = new JList(selectedAIsListModel);
@@ -199,7 +227,7 @@ public class FETournamentPane extends JPanel {
                 selectedAIsList.setVisibleRowCount(-1);
                 JScrollPane listScroller = new JScrollPane(selectedAIsList);
                 listScroller.setPreferredSize(new Dimension(200, 200));
-                p1center.add(listScroller);
+                selectedAIsPanel.add(listScroller);
                 JButton add = new JButton("+");
                 add.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e)
@@ -210,7 +238,7 @@ public class FETournamentPane extends JPanel {
                         }
                     }
                 });
-                p1center.add(add);
+                selectedAIsPanel.add(add);
                 JButton remove = new JButton("-");
                 remove.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e)
@@ -219,13 +247,46 @@ public class FETournamentPane extends JPanel {
                         if (selectedIndex>=0) selectedAIsListModel.remove(selectedIndex);
                     }
                 });
-                p1center.add(remove);
-                p1.add(p1center);
+                selectedAIsPanel.add(remove);
             }
             {
-                JPanel p1right = new JPanel();
-                p1right.setLayout(new BoxLayout(p1right, BoxLayout.Y_AXIS));
-                p1right.add(new JLabel("Opponent AIs"));
+                selectedSynsPanel = new JPanel();
+                selectedSynsPanel.setLayout(new BoxLayout(selectedSynsPanel, BoxLayout.Y_AXIS));
+                selectedSynsPanel.add(new JLabel("Selected Synthesizers"));
+
+                selectedSynsListModel = new DefaultListModel();
+                selectedSynsList = new JList(selectedSynsListModel);
+                selectedSynsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                selectedSynsList.setLayoutOrientation(JList.VERTICAL);
+                selectedSynsList.setVisibleRowCount(-1);
+                JScrollPane listScroller = new JScrollPane(selectedSynsList);
+                listScroller.setPreferredSize(new Dimension(200, 200));
+                selectedSynsPanel.add(listScroller);
+                JButton add = new JButton("+");
+                add.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e)
+                    {
+                        int selected[] = availableSynsList.getSelectedIndices();
+                        for (int idx : selected) {
+                            selectedSynsListModel.addElement(availableSynsList.getModel().getElementAt(idx));
+                        }
+                    }
+                });
+                selectedSynsPanel.add(add);
+                JButton remove = new JButton("-");
+                remove.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e)
+                    {
+                        int selectedIndex = selectedSynsList.getSelectedIndex();
+                        if (selectedIndex >= 0) selectedSynsListModel.remove(selectedIndex);
+                    }
+                });
+                selectedSynsPanel.add(remove);
+            }
+            {
+                opponentAIsPanel = new JPanel();
+                opponentAIsPanel.setLayout(new BoxLayout(opponentAIsPanel, BoxLayout.Y_AXIS));
+                opponentAIsPanel.add(new JLabel("Opponent AIs"));
 
                 opponentAIsListModel = new DefaultListModel();
                 opponentAIsList = new JList(opponentAIsListModel);
@@ -234,7 +295,7 @@ public class FETournamentPane extends JPanel {
                 opponentAIsList.setVisibleRowCount(-1);
                 JScrollPane listScroller = new JScrollPane(opponentAIsList);
                 listScroller.setPreferredSize(new Dimension(200, 200));
-                p1right.add(listScroller);
+                opponentAIsPanel.add(listScroller);
                 opponentAddButton = new JButton("+");
                 opponentAddButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e)
@@ -245,7 +306,7 @@ public class FETournamentPane extends JPanel {
                         }
                     }
                 });
-                p1right.add(opponentAddButton);
+                opponentAIsPanel.add(opponentAddButton);
                 opponentRemoveButton = new JButton("-");
                 opponentRemoveButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e)
@@ -254,13 +315,18 @@ public class FETournamentPane extends JPanel {
                         if (selectedIndex>=0) opponentAIsListModel.remove(selectedIndex);
                     }
                 });
-                p1right.add(opponentRemoveButton);
-                p1.add(p1right);
-
+                opponentAIsPanel.add(opponentRemoveButton);
+                
                 opponentAIsList.setEnabled(false);
                 opponentAddButton.setEnabled(false);
                 opponentRemoveButton.setEnabled(false);
             }
+
+            p1.add(availableSynsPanel);
+            p1.add(selectedSynsPanel);
+            p1.add(availableAIsPanel);
+            p1.add(selectedAIsPanel);
+            p1.add(opponentAIsPanel);
             add(p1);
         }
         add(new JSeparator(SwingConstants.HORIZONTAL));
