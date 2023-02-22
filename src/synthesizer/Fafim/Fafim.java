@@ -16,8 +16,10 @@ import rts.GameState;
 import rts.PhysicalGameState;
 import rts.units.UnitType;
 import rts.units.UnitTypeTable;
+import synthesizer.Synthesizer;
 
-public class Fafim {
+public class Fafim extends Synthesizer {
+    private static String defaultName = "Fafim";
 
     static String path_map = "maps/mapadavid2.xml";
     static String script_name = "out1.ser";
@@ -47,6 +49,14 @@ public class Fafim {
     static UnitType rangedType;
     static EvaluationFunction evaluation = new SimpleSqrtEvaluationFunction3();
 
+    public Fafim() {
+        super.name = Fafim.defaultName;
+    }
+    
+    public DslAI generate(String map) { // TODO:
+        return (DslAI)null;
+    }
+    
     public static void main(String[] args) throws Exception {
         utt = new UnitTypeTable();
         workerType = utt.getUnitType("Worker");

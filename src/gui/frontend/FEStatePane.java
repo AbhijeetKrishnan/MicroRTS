@@ -165,9 +165,9 @@ public class FEStatePane extends JPanel {
                   };
 
     public static Class Synthesizers[] = {
-        synthesizer.FicPlaySynthesizer.Synthesizer.class,
+        synthesizer.FicPlaySynthesizer.FicPlaySynthesizer.class,
         synthesizer.Fafim.Fafim.class,
-        synthesizer.random.Synthesizer.class
+        synthesizer.random.RandomSynthesizer.class
     };
 
     Class PlayoutAIs[] = {

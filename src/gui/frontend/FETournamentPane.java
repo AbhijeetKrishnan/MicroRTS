@@ -6,6 +6,7 @@
 package gui.frontend;
 
 import ai.core.AI;
+import ai.synthesis.dslForScriptGenerator.DslAI;
 import gui.JTextAreaWriter;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -34,6 +35,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.text.DefaultCaret;
 import rts.units.UnitTypeTable;
+import synthesizer.Synthesizer;
 import tournaments.FixedOpponentsTournament;
 import tournaments.LoadTournamentAIs;
 import tournaments.RoundRobinTournament;
@@ -443,9 +445,15 @@ public class FETournamentPane extends JPanel {
                     // get all the necessary info:
                     UnitTypeTable utt = FEStatePane.unitTypeTables[unitTypeTableBox.getSelectedIndex()];
                     String tournamentType = (String)tournamentTypeComboBox.getSelectedItem();
+                    List<Synthesizer> selectedSyns = new ArrayList<>();
                     List<AI> selectedAIs = new ArrayList<>();
                     List<AI> opponentAIs = new ArrayList<>();
                     List<String> maps = new ArrayList<>();
+                    for (int i = 0; i < selectedSynsListModel.getSize(); i++) {
+                        Class c = (Class)selectedSynsListModel.get(i);
+                        Constructor cons = c.getConstructor();
+                        selectedSyns.add((Synthesizer)cons.newInstance());
+                    }
                     for(int i = 0;i<selectedAIsListModel.getSize();i++) {
                         Class c = (Class)selectedAIsListModel.get(i);
                         Constructor cons = c.getConstructor(UnitTypeTable.class);
@@ -459,6 +467,14 @@ public class FETournamentPane extends JPanel {
                     for(int i = 0;i<mapListModel.getSize();i++) {
                         String mapname = (String)mapListModel.getElementAt(i);
                         maps.add(mapname);
+                    }
+
+                    for (Synthesizer syn : selectedSyns) {
+                        for (String mapPath : maps) {
+                            System.out.println(mapPath);
+                            DslAI script = syn.generate(mapPath);
+                            selectedAIs.add((AI)script);
+                        }
                     }
                     
                     int iterations = Integer.parseInt(iterationsField.getText());
@@ -487,7 +503,7 @@ public class FETournamentPane extends JPanel {
                     final String tracesFolder = (tracesCheckBox.isSelected() ? tournamentfolder + "/traces":null);
                                                             
                     if (tournamentType.equals(TOURNAMENT_ROUNDROBIN)) {
-                        if (selectedAIs.size()<2) {
+                        if (selectedSyns.size() + selectedAIs.size() < 2) {
                             tournamentProgressTextArea.append("Select at least two AIs\n");
                         } else if (maps.isEmpty()) {
                             tournamentProgressTextArea.append("Select at least one map\n");
